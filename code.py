@@ -248,26 +248,7 @@ class TrialManagement:
             output = phase()
         print("\n⚖️ TRIAL CONCLUDED ⚖️\n")
         return output
-import pandas as pd
 
-if __name__ == "__main__":
-    data = pd.read_csv(r'cases.csv')
-    output_file = 'outputs.csv'
-
-    if not os.path.exists(output_file):
-        pd.DataFrame(columns=["id", "verdict"]).to_csv(output_file, index=False)
-
-    for index, row in data.iterrows():
-        # global_memory.clear()  # Reset memory for each trial
-        case_details = row.text
-        trial = TrialManagement(case_details)
-        verdict = trial.run_trial()
-
-        df_row = pd.DataFrame([{
-            "id": row.id,
-            "verdict": verdict
-        }])
-        df_row.to_csv(output_file, mode='a', header=False, index=False)
 import pandas as pd
 
 if __name__ == "__main__":
